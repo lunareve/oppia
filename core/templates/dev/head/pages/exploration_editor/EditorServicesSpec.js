@@ -368,7 +368,7 @@ describe('Exploration title service', function() {
     beforeEach(inject(function($injector) {
       ets = $injector.get('explorationTitleService');
       $httpBackend = $injector.get('$httpBackend');
-      
+
       GLOBALS.INVALID_NAME_CHARS = '#@&^%$';
     }));
 
@@ -430,7 +430,7 @@ describe('Exploration rights service', function() {
     var ers = null;
 
     beforeEach(inject(function($injector) {
-      ers = $injector.get('explorationRightsService');
+      ers = $injector.get('ExplorationRightsService');
 
       GLOBALS.ACTIVITY_STATUS_PRIVATE = 'private';
       GLOBALS.ACTIVITY_STATUS_PUBLIC = 'public';

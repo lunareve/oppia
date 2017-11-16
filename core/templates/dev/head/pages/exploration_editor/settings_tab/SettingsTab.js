@@ -20,7 +20,7 @@ oppia.controller('SettingsTab', [
   '$scope', '$http', '$window', '$modal', '$rootScope',
   'explorationData', 'explorationTitleService', 'explorationCategoryService',
   'explorationObjectiveService', 'explorationLanguageCodeService',
-  'explorationTagsService', 'explorationRightsService',
+  'explorationTagsService', 'ExplorationRightsService',
   'explorationInitStateNameService', 'explorationParamSpecsService',
   'changeListService', 'alertsService', 'explorationStatesService',
   'explorationParamChangesService', 'explorationWarningsService',
@@ -32,7 +32,7 @@ oppia.controller('SettingsTab', [
       $scope, $http, $window, $modal, $rootScope,
       explorationData, explorationTitleService, explorationCategoryService,
       explorationObjectiveService, explorationLanguageCodeService,
-      explorationTagsService, explorationRightsService,
+      explorationTagsService, ExplorationRightsService,
       explorationInitStateNameService, explorationParamSpecsService,
       changeListService, alertsService, explorationStatesService,
       explorationParamChangesService, explorationWarningsService,
@@ -70,7 +70,7 @@ oppia.controller('SettingsTab', [
       $scope.explorationObjectiveService = explorationObjectiveService;
       $scope.explorationLanguageCodeService = explorationLanguageCodeService;
       $scope.explorationTagsService = explorationTagsService;
-      $scope.explorationRightsService = explorationRightsService;
+      $scope.ExplorationRightsService = ExplorationRightsService;
       $scope.explorationInitStateNameService = explorationInitStateNameService;
       $scope.explorationParamSpecsService = explorationParamSpecsService;
       $scope.explorationParamChangesService = explorationParamChangesService;
@@ -192,13 +192,13 @@ oppia.controller('SettingsTab', [
 
     $scope.editRole = function(newMemberUsername, newMemberRole) {
       $scope.closeRolesForm();
-      explorationRightsService.saveRoleChanges(
+      ExplorationRightsService.saveRoleChanges(
         newMemberUsername, newMemberRole);
     };
 
     $scope.toggleViewabilityIfPrivate = function() {
-      explorationRightsService.setViewability(
-        !explorationRightsService.viewableIfPrivate());
+      ExplorationRightsService.setViewability(
+        !ExplorationRightsService.viewableIfPrivate());
     };
 
     /********************************************
@@ -284,7 +284,7 @@ oppia.controller('SettingsTab', [
           }
         ]
       }).result.then(function() {
-        explorationRightsService.makeCommunityOwned();
+        ExplorationRightsService.makeCommunityOwned();
       });
     };
 
@@ -363,7 +363,7 @@ oppia.controller('SettingsTab', [
             }
           ]
         }).result.then(function(result) {
-          explorationRightsService.saveModeratorChangeToBackend(
+          ExplorationRightsService.saveModeratorChangeToBackend(
             action, result.emailBody);
         });
       });
