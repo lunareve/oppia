@@ -18,8 +18,8 @@
  */
 
 oppia.factory('ExplorationRightsService', [
-  '$http', '$q', 'explorationData', 'alertsService',
-  function($http, $q, explorationData, alertsService) {
+  '$http', '$q', 'ExplorationDataService', 'alertsService',
+  function($http, $q, ExplorationDataService, alertsService) {
     return {
       init: function(
           ownerNames, editorNames, viewerNames, status, clonedFrom,
@@ -57,9 +57,9 @@ oppia.factory('ExplorationRightsService', [
         var that = this;
 
         var requestUrl = (
-          '/createhandler/rights/' + explorationData.explorationId);
+          '/createhandler/rights/' + ExplorationDataService.explorationId);
         $http.put(requestUrl, {
-          version: explorationData.data.version,
+          version: ExplorationDataService.data.version,
           make_community_owned: true
         }).then(function(response) {
           var data = response.data;
@@ -78,9 +78,9 @@ oppia.factory('ExplorationRightsService', [
         var that = this;
 
         var requestUrl = (
-            '/createhandler/rights/' + explorationData.explorationId);
+            '/createhandler/rights/' + ExplorationDataService.explorationId);
         $http.put(requestUrl, {
-          version: explorationData.data.version,
+          version: ExplorationDataService.data.version,
           viewable_if_private: viewableIfPrivate
         }).then(function(response) {
           var data = response.data;
@@ -99,9 +99,9 @@ oppia.factory('ExplorationRightsService', [
         var that = this;
 
         var requestUrl = (
-            '/createhandler/rights/' + explorationData.explorationId);
+            '/createhandler/rights/' + ExplorationDataService.explorationId);
         $http.put(requestUrl, {
-          version: explorationData.data.version,
+          version: ExplorationDataService.data.version,
           new_member_role: newMemberRole,
           new_member_username: newMemberUsername
         }).then(function(response) {
@@ -121,7 +121,7 @@ oppia.factory('ExplorationRightsService', [
         var that = this;
 
         var requestUrl = (
-          '/createhandler/status/' + explorationData.explorationId);
+          '/createhandler/status/' + ExplorationDataService.explorationId);
         $http.put(requestUrl, {
           make_public: true
         }).then(function(response) {
@@ -140,11 +140,12 @@ oppia.factory('ExplorationRightsService', [
         var that = this;
 
         var explorationModeratorRightsUrl = (
-          '/createhandler/moderatorrights/' + explorationData.explorationId);
+          '/createhandler/moderatorrights/' +
+          ExplorationDataService.explorationId);
         $http.put(explorationModeratorRightsUrl, {
           action: action,
           email_body: emailBody,
-          version: explorationData.data.version
+          version: ExplorationDataService.data.version
         }).then(function(response) {
           var data = response.data;
           alertsService.clearWarnings();
